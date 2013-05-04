@@ -12,9 +12,9 @@ $modules = array(
 /*Module Class*/
 
 class CoinModule{
-	private $username;
-	private $password;
-	private $cookie_path = 'cookie.txt';
+	public $username;
+	public $password;
+	public $cookie_path = 'cookie.txt';
 
 	function setUsername($u){
 		$this->username = $u;
