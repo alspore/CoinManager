@@ -1,14 +1,16 @@
 <?php
 
 /**
+ * CoinManager module for the BitMinter pool.
+ *
  * PHP version 5
  *
  * requires the cURL php library and simple_html_dom.php
  *
  * @author Aaron Landis <alspore@gmail.com>
  * @version 1.0
- * @package PlaceLocalInclude
- * @subpackage bitminter_library.php
+ * @package CoinManager.php
+ * @subpackage cm_bitminter.php
  */
 
 require_once('simple_html_dom.php');

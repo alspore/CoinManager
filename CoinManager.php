@@ -1,4 +1,17 @@
 <?php
+/**
+ * CoinManager is a modular library used to manage bitcoin pool account stats and workers.
+ *
+ * PHP version 5
+ *
+ * requires the cURL php library and simple_html_dom.php
+ *
+ * @author Aaron Landis <alspore@gmail.com>
+ * @version 1.0
+ * @package PlaceLocalInclude.php
+ * @subpackage CoinManager.php
+ */
+
 /*Config*/
 
 //path to modules directory
@@ -7,6 +20,7 @@ $module_path = 'cm-modules/';
 //list of module files to be loaded
 $modules = array(
 	'cm_bitminter',
+	'cm_slush',
 );
 
 /*Module Class*/
