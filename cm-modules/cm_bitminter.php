@@ -14,6 +14,8 @@
 require_once('simple_html_dom.php');
 
 class cm_bitminter extends CoinModule{
+	private $json = null;
+
 	function addWorker($name, $pass){
 
 		//action='...'
@@ -137,6 +139,57 @@ class cm_bitminter extends CoinModule{
 		//$return_value = false;
 		//if(strlen($step3) > 0) { $return_value = true; }
 		//return $return_value;
+	}
+
+	function updateJson(){
+		$raw = file_get_contents('http://bitminter.com/api/users/'.$this->username.'?key='.$this->api_key);
+		$this->json = json_decode($raw, true);
+	}
+
+	function getActiveWorkers(){
+		if(is_null($this->json)){ $this->updateJson(); }
+		return $this->json['active_workers'];
+	}
+
+	function getHashRate($w){
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(is_null($w)){ return $this->json['hash_rate']; }
+		else{
+			foreach ($this->json['workers'] as $worker){
+				if($worker['name'] == $w){
+					return $worker['hash_rate'];
+				}
+			}
+			return null;
+		}
+	}
+
+	function getAcceptedShares($w, $option){
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(is_null($w)){ return $this->json['shift']['accepted']; }
+		else{
+			foreach ($this->json['workers'] as $worker){
+				if($worker['name'] == $w){
+					if($option == 'total'){ return $worker['work']['BTC']['total_accepted']; }
+					else{ return $worker['work']['BTC']['round_accepted']; }
+				}
+			}
+			return null;
+		}
+	}
+
+	function getRejectedShares($w, $option){
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(is_null($w)){ return $this->json['shift']['rejected']; }
+		else{
+			foreach ($this->json['workers'] as $worker){
+				if($worker['name'] == $w){
+					if($option == 'total'){ return $worker['work']['BTC']['total_rejected']; }
+					else{ return $worker['work']['BTC']['round_rejected']; }
+				}
+			}
+			return null;
+		}
 	}
 }
 ?>

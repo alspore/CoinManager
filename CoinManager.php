@@ -15,6 +15,7 @@ class CoinModule{
 	public $username;
 	public $password;
 	public $cookie_path = 'cookie.txt';
+	public $api_key;
 
 	function setUsername($u){
 		$this->username = $u;
@@ -43,6 +44,14 @@ class CoinModule{
 
 	function setCookiePath($cp){
 		$this->cookie_path = $cp;
+	}
+
+	function setApiKey($key){
+		$this->api_key = $key;
+	}
+
+	function getApiKey($key){
+		return $this->api_key;
 	}
 }
 
