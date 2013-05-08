@@ -20,7 +20,7 @@ $module_path = 'cm-modules/';
 //list of module files to be loaded
 $modules = array(
 	'cm_bitminter',
-	'cm_slush',
+	'cm_btcguild',
 );
 
 /*Module Class*/
