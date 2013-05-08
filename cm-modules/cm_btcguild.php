@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template for CoinManager modules.
+ * CoinManager module for the BTCGuild pool.
  *
  * PHP version 5
  *
@@ -10,7 +10,7 @@
  * @author Aaron Landis <alspore@gmail.com>
  * @version 1.0
  * @package CoinManager.php
- * @subpackage cm_template.php
+ * @subpackage cm_btcguild.php
  */
 
 require_once('simple_html_dom.php');
@@ -116,8 +116,7 @@ class cm_btcguild extends CoinModule{
 				}
 			}
 			return null;
-		}
-		else{
+		}else{
 			$total = 0;
 			foreach ($this->json['workers'] as $worker){
 				if($worker['hash_rate'] > 0){
@@ -128,12 +127,40 @@ class cm_btcguild extends CoinModule{
 		}
 	}
 
-	function getAcceptedShares($w, $option){
-		//returns total or specific accepted shares
+	function getAcceptedShares($w){
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(!is_null($w)){
+			foreach($this->json['workers'] as $worker){
+				$shortname = explode('_', $worker['worker_name']);
+				if($shortname == $w){
+					return $worker['valid_shares'];
+				}
+			}
+			return null;
+		}else{
+			$total = 0;
+			foreach($this->json['workers'] as $worker){
+				$total += $worker['valid_shares'];
+			}
+		}
 	}
 
 	function getRejectedShares($w, $option){
-		//returns total or specific rejected shares
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(!is_null($w)){
+			foreach($this->json['workers'] as $worker){
+				$shortname = explode('_', $worker['worker_name']);
+				if($shortname == $w){
+					return $worker['stale_shares'];
+				}
+			}
+			return null;
+		}else{
+			$total = 0;
+			foreach($this->json['workers'] as $worker){
+				$total += $worker['stale_shares'];
+			}
+		}
 	}
 }
 ?>
