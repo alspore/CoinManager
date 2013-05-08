@@ -24,7 +24,7 @@ What Are You Going To Add Next?
 - [x] Main README
 - [x] BitMinter Module
 - [ ] Slush's Pool Module
-- [ ] BtcGuild Module
+- [x] BtcGuild Module
 - [ ] 50BTC Module
 - [ ] Deepbit Module
 - [ ] EclipseMC Module
