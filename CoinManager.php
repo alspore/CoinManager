@@ -21,6 +21,7 @@ $module_path = 'cm-modules/';
 $modules = array(
 	'cm_bitminter',
 	'cm_btcguild',
+	'cm_eclipsemc',
 );
 
 /*Module Class*/
