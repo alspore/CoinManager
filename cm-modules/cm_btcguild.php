@@ -79,7 +79,7 @@ class cm_btcguild extends CoinModule{
 	}
 
 	function updateJson(){
-		$raw = file_get_contents('https://www.btcguild.com/api_key='.$this->api_key);
+		$raw = file_get_contents('https://www.btcguild.com/api.php?api_key='.$this->api_key);
 		$this->json = json_decode($raw);
 	}
 
