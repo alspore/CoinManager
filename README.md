@@ -23,10 +23,10 @@ What Are You Going To Add Next?
 
 - [x] Main README
 - [x] BitMinter Module
-- [ ] Slush's Pool Module
+- [x] EclipseMC Module
 - [x] BtcGuild Module
+- [ ] Slush's Pool Module
 - [ ] 50BTC Module
 - [ ] Deepbit Module
-- [ ] EclipseMC Module
 - [ ] Module Documentation
-- [ ] Litcoin Modules
+- [ ] Litecoin Modules
