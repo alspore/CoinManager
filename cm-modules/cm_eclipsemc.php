@@ -79,23 +79,87 @@ class cm_eclipsemc extends CoinModule{
 	}
 
 	function updateJson(){
-		//if api is a json file, updates local json object
+		$raw = file_get_contents('https://eclipsemc.com/api.php?key='.$this->api_key.'&action=userstats');
+		$this->json = json_decode($raw);
 	}
 
-	function getActiveWorkers(){
-		//returns number of active workers
+	function getActiveWorkers($w){
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(!is_null($w)){ 
+			foreach($this->json['workers'] as $worker){
+				$shortname = explode('_', $worker['worker_name']);
+				if($shortname[1] == $w && $worker['hash_rate'] > 0){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		else{
+			$total = 0;
+			foreach ($this->json['workers'] as $worker){
+				if($worker['hash_rate'] > 0){
+					$total++;
+				}
+			}
+			return $total;
+		}
 	}
 
 	function getHashRate($w){
-		//returns total or specific hashrate
+		if(is_null($this->json)){ $this->updateJson(); }
+		if(!is_null($w)){ 
+			foreach($this->json['workers'] as $worker){
+				$shortname = explode('_', $worker['worker_name']);
+				if($shortname[1] == $w){
+					return $worker['hash_rate'];
+				}
+			}
+			return null;
+		}else{
+			$total = 0;
+			foreach ($this->json['workers'] as $worker){
+				if($worker['hash_rate'] > 0){
+					$total += $worker['hash_rate'];
+				}
+			}
+			return $total;
+		}
 	}
 
 	function getAcceptedShares($w, $option){
-		//returns total or specific accepted shares
-	}
-
-	function getRejectedShares($w, $option){
-		//returns total or specific rejected shares
+		if(is_null($this->json)){ $this->updateJson(); }
+		if($option == 'total'){
+			if(!is_null($w)){
+				foreach($this->json['workers'] as $worker){
+					$shortname = explode('_', $worker['worker_name']);
+					if($shortname[1] == $w){
+						return $worker['total_shares'];
+					}
+				}
+				return null;
+			}else{
+				$total = 0;
+				foreach($this->json['workers'] as $worker){
+					$total += $worker['total_shares'];
+				}
+			}
+		}else{
+			if(!is_null($w)){
+				foreach($this->json['workers'] as $worker){
+					$shortname = explode('_', $worker['worker_name']);
+					if($shortname[1] == $w){
+						return $worker['round_shares'];
+					}
+				}
+				return null;
+			}else{
+				$total = 0;
+				foreach($this->json['workers'] as $worker){
+					$total += $worker['round_shares'];
+				}
+			}
+		}
 	}
 }
 ?>
