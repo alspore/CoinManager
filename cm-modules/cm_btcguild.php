@@ -88,7 +88,7 @@ class cm_btcguild extends CoinModule{
 		if(!is_null($w)){ 
 			foreach($this->json['workers'] as $worker){
 				$shortname = explode('_', $worker['worker_name']);
-				if($shortname == $w && $worker['hash_rate'] > 0){
+				if($shortname[1] == $w && $worker['hash_rate'] > 0){
 					return true;
 				}else{
 					return false;
@@ -111,7 +111,7 @@ class cm_btcguild extends CoinModule{
 		if(!is_null($w)){ 
 			foreach($this->json['workers'] as $worker){
 				$shortname = explode('_', $worker['worker_name']);
-				if($shortname == $w){
+				if($shortname[1] == $w){
 					return $worker['hash_rate'];
 				}
 			}
@@ -132,7 +132,7 @@ class cm_btcguild extends CoinModule{
 		if(!is_null($w)){
 			foreach($this->json['workers'] as $worker){
 				$shortname = explode('_', $worker['worker_name']);
-				if($shortname == $w){
+				if($shortname[1] == $w){
 					return $worker['valid_shares'];
 				}
 			}
@@ -150,7 +150,7 @@ class cm_btcguild extends CoinModule{
 		if(!is_null($w)){
 			foreach($this->json['workers'] as $worker){
 				$shortname = explode('_', $worker['worker_name']);
-				if($shortname == $w){
+				if($shortname[1] == $w){
 					return $worker['stale_shares'];
 				}
 			}
