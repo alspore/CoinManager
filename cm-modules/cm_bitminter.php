@@ -19,6 +19,12 @@ class cm_bitminter extends CoinModule{
 	private $json = null;
 
 	function addWorker($name, $pass){
+		if($this->debug){
+			$this->time = microtime();
+			$this->time = explode(' ', $this->time);
+			$this->time = $this->time[1] + $this->time[0];
+			$this->start = $this->time;
+		}
 
 		//action='...'
 		$bitminter_workerpage = 'https://bitminter.com/members/workers';
@@ -63,7 +69,28 @@ class cm_bitminter extends CoinModule{
 		$workertable = curl_exec($curl);
 		curl_close($curl);
 
-		return $workertable;
+		if($this->debug){
+			$log = array(
+				'duplicate' => false,
+				'response' => 0,
+				'too_long' => false,
+				'char_limit' => 20,
+			);
+
+			$this->time = microtime();
+			$this->time = explode(' ', $this->time);
+			$this->time = $this->time[1] + $this->time[0];
+			$finish = $this->time;
+			$log['response'] = round(($finish - $this->start), 4);
+
+			echo $workertable;
+			if(strstr($workertable, 'You cannot have two workers with the same name')){
+				$log['duplicate'] = true;
+			}elseif(strstr($workertable, 'Worker name cannot be longer than 20 characters')){
+				$log['too_long'] = true;
+			}
+			return $log;
+		}
 	}
 
 	function generateCookie(){
@@ -138,9 +165,9 @@ class cm_bitminter extends CoinModule{
 		$step3 = curl_exec($curl);
 		curl_close($curl);
 
-		//$return_value = false;
-		//if(strlen($step3) > 0) { $return_value = true; }
-		//return $return_value;
+		if($this->debug){
+			return $step3;
+		}
 	}
 
 	function updateJson(){

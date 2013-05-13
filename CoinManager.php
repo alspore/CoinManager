@@ -31,6 +31,9 @@ class CoinModule{
 	public $password;
 	public $cookie_path = 'cookie.txt';
 	public $api_key;
+	public $debug = false;
+	public $time;
+	public $start;
 
 	function setUsername($u){
 		$this->username = $u;
@@ -67,6 +70,10 @@ class CoinModule{
 
 	function getApiKey($key){
 		return $this->api_key;
+	}
+
+	function setDebug($bool){
+		$this->debug = ($bool) ? true : false;
 	}
 }
 
