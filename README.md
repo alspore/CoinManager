@@ -25,8 +25,5 @@ What Are You Going To Add Next?
 - [x] BitMinter Module
 - [x] EclipseMC Module
 - [x] BtcGuild Module
-- [ ] Slush's Pool Module
-- [ ] 50BTC Module
-- [ ] Deepbit Module
 - [ ] Module Documentation
-- [ ] Litecoin Modules
+- [ ] Litecoin Modules if Requested
