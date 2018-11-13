@@ -1,29 +1,12 @@
-Well What is it?
-================
+### CoinManager
+This project is no longer maintained, and the modules below may no longer work.
 
-CoinManager is a modular library designed to make automating worker generation in bitcoin pools easier.
-
-What Pools Does It Support?
-===========================
-
-I initially plan to create modules for about 10 of the largest bitcoin pools.
-
-Are There Any Requirements To Run The Library?
-==============================================
+CoinManager is a library designed to make automating worker generation in bitcoin pools easier.
+It has support for the BitMinter, EclipseMC, and BtcGuild mining pools are included.
 
 You need...
 
 * A web server with PHP 5.1 or higher.
 * The cURL PHP library enabled.
 
-NOTE: There are different requirenments for each module.  See module documentation.
-
-What Are You Going To Add Next?
-==============================
-
-- [x] Main README
-- [x] BitMinter Module
-- [x] EclipseMC Module
-- [x] BtcGuild Module
-- [ ] Module Documentation
-- [ ] Litecoin Modules if Requested
+NOTE: There are different requirements for each module.  See module documentation.
